@@ -1,6 +1,7 @@
 <?php
 
-    /*cria uma sessão ou retorna o atual com base em um identificaor passado por meio de uma solicitação GET ou POST ou passado por meio de um cookie*/
+    /*cria uma sessão ou retorna o atual com base em um identificaor passado por
+     meio de uma solicitação GET ou POST ou passado por meio de um cookie*/
     session_start();
 
     define('INCLUDE_PATH', 'http://localhost/Projeto_01teste'); // Definir o domínio do site

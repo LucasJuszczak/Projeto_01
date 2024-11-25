@@ -8,6 +8,10 @@
 </head>
 
 <body>
+    <?php
+        $pdo = MySql::conectar();
+
+    ?>
 
     <div class="box-login">
         <form action="" method="post"></form>
