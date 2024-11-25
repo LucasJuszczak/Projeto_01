@@ -6,6 +6,10 @@
     define('INCLUDE_PATH', 'http://localhost/Projeto_01teste'); // Definir o domínio do site
 
     define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
+
+    //Banco de dados
+
+    
     
     $autoload = function($class){
         include('assets/classes/'.$class.'.php'); // Carregando a classe: 'Email'
