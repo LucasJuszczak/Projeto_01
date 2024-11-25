@@ -9,6 +9,15 @@
 
     //Banco de dados
 
+    //Hospedagem
+    define('HOST', 'localhost');
+    //Banco
+    define('DATABASE', 'projeto_01');
+    //Usuario
+    define('USER', 'root');
+    //Senha
+    define('PASSWORD', '');
+
     
     
     $autoload = function($class){
