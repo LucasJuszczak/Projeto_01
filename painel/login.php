@@ -8,16 +8,15 @@
 </head>
 
 <body>
-    <?php
+    <div class="box-login">
+        <?php
         $pdo = MySql::conectar();
 
-    ?>
-
-    <div class="box-login">
+        ?>
         <form action="" method="post"></form>
-        <input type="text" name="user" placeholder="Login" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" name="acao" value="Logar">
+            <input type="text" name="user" placeholder="Login" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" name="acao" value="Logar">
         </form>
     </div>
 </body>
