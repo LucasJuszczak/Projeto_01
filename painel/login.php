@@ -28,7 +28,7 @@
                 header('location: ' .INCLUDE_PATH_PAINEL);
                 die();
         }else{
-            echo '<div class="erro-box"> Usuário ou senha incorretos!</div>';
+            echo '<div class="erro-box"> <i class="<i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>';
         }
     
     
