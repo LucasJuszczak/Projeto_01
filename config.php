@@ -17,10 +17,8 @@
     //Usuario
     define('USER', 'root');
     //Senha
-    define('PASSWORD', 'senha');
+    define('PASSWORD', '');
 
-    
-    
     $autoload = function($class){
         include('assets/classes/'.$class.'.php'); // Carregando a classe: 'Email'
     };
