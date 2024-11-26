@@ -25,7 +25,7 @@
 <section class="descricao-autor">
     <div class="center">
         <div class="w50 left">
-            <h2>Lucas F. J.</h2>
+            <h2>Leandro</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Provident nostrum tenetur earum adipisci minus velit saepe
                 maxime soluta ad? Consequuntur, pariatur? Earum temporibus ex

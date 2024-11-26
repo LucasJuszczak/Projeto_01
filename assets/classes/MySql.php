@@ -9,11 +9,11 @@ class MySql
             try {
                 self::$pdo = new PDO(
                     'mysql:host=' . HOST .
-                        ';dbname=' . DATABASE,
+                        ';dbname=' .DATABASE,
                     USER,
                     PASSWORD,
                     array(PDO::MYSQL_ATTR_INIT_COMMAND =>
-                    "SET NAMES uft8")
+                    "SET NAMES utf8")
                 );
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (\Throwable $th) {

@@ -19,10 +19,15 @@
             $sql->execute(array($user, $password));
             if($sql ->rowCount() == 1);
                 $_SESSION['login'] == true;
-
+                $_SESSION['user'] == $user;
+                $_SESSION['password'] == $password;
+                header('location: ' .INCLUDE_PATH_PAINEL);
+                die();
+        }else{
+            echo '<div class="erro-box"> Usuário ou senha incorretos!</div>';
         }
-
-
+    
+    
         ?>
 
         <form action="" method="post">

@@ -40,3 +40,12 @@ html, body{
     cursor: pointer;
     border: 2px solid black;
 }
+
+.erro-box{
+    width: 100%;
+    padding: 8px 2%;
+    text-align: center;
+    background-color: red;
+    color: white;
+    font: 18px;
+}
