@@ -20,14 +20,14 @@
             $password = $_POST['password'];
             $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
             $sql->execute(array($user, $password));
-            if ($sql->rowCount() == 1) { // Removido o ponto e vírgula
-                $_SESSION['login'] = true; // Corrigido para atribuição
-                $_SESSION['user'] = $user; // Corrigido para atribuição
-                $_SESSION['password'] = $password; // Corrigido para atribuição
-                header('Location: ' . INCLUDE_PATH_PAINEL); // Corrigido para maiúscula
+            if ($sql->rowCount() == 1) { 
+                $_SESSION['login'] = true; 
+                $_SESSION['user'] = $user; 
+                $_SESSION['password'] = $password; 
+                header('Location: ' . INCLUDE_PATH_PAINEL); 
                 die();
             } else {
-                echo '<div class="erro-box"><i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>'; // Corrigido o HTML da mensagem de erro
+                echo '<div class="erro-box"><i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>'; 
             }
         }
         ?>
