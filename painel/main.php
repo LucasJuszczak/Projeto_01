@@ -1,5 +1,8 @@
 <?php
-    
+    if (isset($_GET_GET['logout'])) {
+        Painel::logout();
+        
+    }
 ?>
 
 <!DOCTYPE html>

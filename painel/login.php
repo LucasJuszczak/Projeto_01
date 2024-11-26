@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en, pt-br">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!--Font Awesome-->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH_PAINEL; ?>css/style.css">
-    <title>Painel de controle</title>
+    <title>Painel de Controle</title>
 </head>
 
 <body>
@@ -18,20 +18,18 @@
         if (isset($_POST['acao'])) {
             $user = $_POST['user'];
             $password = $_POST['password'];
-            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios`
-                    WHERE  user = ? AND password = ?");
+            $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
             $sql->execute(array($user, $password));
-            if($sql ->rowCount() == 1);
-                $_SESSION['login'] == true;
-                $_SESSION['user'] == $user;
-                $_SESSION['password'] == $password;
-                header('location: ' .INCLUDE_PATH_PAINEL);
+            if ($sql->rowCount() == 1) { // Removido o ponto e vírgula
+                $_SESSION['login'] = true; // Corrigido para atribuição
+                $_SESSION['user'] = $user; // Corrigido para atribuição
+                $_SESSION['password'] = $password; // Corrigido para atribuição
+                header('Location: ' . INCLUDE_PATH_PAINEL); // Corrigido para maiúscula
                 die();
-        }else{
-            echo '<div class="erro-box"> <i class="<i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>';
+            } else {
+                echo '<div class="erro-box"><i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>'; // Corrigido o HTML da mensagem de erro
+            }
         }
-    
-    
         ?>
 
         <form action="" method="post">
