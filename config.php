@@ -17,7 +17,7 @@
     //Usuario
     define('USER', 'root');
     //Senha
-    define('PASSWORD', 'senha');
+    define('PASSWORD', '');
 
     
     
