@@ -19,10 +19,12 @@ if (isset($_GET['logout'])) {
 </head>
 
 <body>
+    <!--Barra lateral painel-->
     <aside>
 
 
     </aside>
+    <!--Barra lateral painel--> 
     <header>
         <div class="center">
             <div class="logout">
