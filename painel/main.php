@@ -22,16 +22,29 @@ if (isset($_GET['logout'])) {
     <!--Barra lateral painel-->
     <aside>
 
+        <div class="box-usuario">
+            <div class="avatar-usuario">
+                <i class="fa-solid fa-user"></i>
+            </div><!--avatar usuario-->
+
+            <div class="nome-usuario">
+                <h2>Leandro</h2>
+                <p>Desenvolvedor</p>
+            </div><!--nome usuario-->
+        </div><!--box usuario-->
+
 
     </aside>
-    <!--Barra lateral painel--> 
+    <!--Barra lateral painel-->
     <header>
         <div class="center">
+            <div class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <div class="logout">
                 <a href="<?php echo INCLUDE_PATH_PAINEL; ?>?logout=1">
                     <i class="fas fa-sign-out"></i>
                 </a>
-
             </div>
             <div class="clear"></div>
         </div>
