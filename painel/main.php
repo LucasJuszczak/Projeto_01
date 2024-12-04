@@ -1,8 +1,7 @@
 <?php
-    if (isset($_GET_GET['logout'])) {
-        Painel::logout();
-        
-    }
+if (isset($_GET['logout'])) {
+    Painel::logout();
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,14 +20,16 @@
 
 <body>
     <aside>
-    
+
 
     </aside>
     <header>
         <div class="center">
             <div class="logout">
-                <a href="<?php echo INCLUDE_PATH_PAINEL; ?>logout">
-                    <i class="fas fa-sign-out"></i></a>
+                <a href="<?php echo INCLUDE_PATH_PAINEL; ?>?logout=1">
+                    <i class="fas fa-sign-out"></i>
+                </a>
+
             </div>
             <div class="clear"></div>
         </div>
