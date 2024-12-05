@@ -62,7 +62,9 @@ html, body{
 }
 
 aside{
-    float: left;
+    left: 0;
+    top: 0;
+    position: fixed;
     overflow-y: auto;
     height: 100%;
     background-color: rgb(11, 136, 11);
@@ -102,7 +104,8 @@ div.box-usuario{
 }
 
 header{
-    float: left;
+    position: relative;
+    left: 250px;
     padding: 10px 0;
     background-color: rgb(75, 221, 75);
     width: calc(100% - 250px);
@@ -130,4 +133,24 @@ header{
 
 .box-login input[type=submit]:hover {
     background-color: rgb(19, 149, 19);
+}
+
+.content{
+    width: calc(100% - 250px);
+    left: 250px;
+    position: relative;
+    background-color: rgb(146, 210, 154);
+    height: 5000px;
+}
+
+/*mobile*/
+
+@media screen and (max-width:768px){
+    aside{
+        display: none;
+    }
+    header, .content{
+        width: 100%;
+        left: 0;
+    }
 }

@@ -21,7 +21,6 @@ if (isset($_GET['logout'])) {
 <body>
     <!--Barra lateral painel-->
     <aside>
-
         <div class="box-usuario">
             <?php if($_SESSION['img'] == ''){ ?>
             <div class="avatar-usuario">
@@ -40,6 +39,23 @@ if (isset($_GET['logout'])) {
             </div><!--nome usuario-->
         </div><!--box usuario-->
 
+        <div class="items-menu">
+                <h2>Cadastro</h2>
+                <a href="">Slide</a>
+                <a href="">Depoimentos</a>
+                <a href="">Serviços</a>
+                <h2>Gestão</h2>
+                <a href="">Slide</a>
+                <a href="">Depoimentos</a>
+                <a href="">Serviços</a>
+                <h2>Usuario</h2>
+                <a href="">Editar</a>
+                <a href="">Adicionar</a>
+                <h2>Configuração</h2>
+                <a href="">Editar</a>
+                
+
+        </div><!--items-menu-->
 
     </aside>
     <!--Barra lateral painel-->
@@ -56,6 +72,21 @@ if (isset($_GET['logout'])) {
             <div class="clear"></div>
         </div>
     </header>
+
+    
+
+    <div class="content">
+        
+    </div>
+
+     <!-- Jquery -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Jquery -->
+
+    <script src="<?php echo INCLUDE_PATH_PAINEL;?>js/main.js"></script>
+
 </body>
 
 </html>
