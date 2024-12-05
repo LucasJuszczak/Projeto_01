@@ -24,4 +24,14 @@
     };
 
     spl_autoload_register($autoload);
+
+    //função para os cargos dentro do painel
+    function pegaCargo($cargo){
+        $vetor = [
+            '0' => 'Normal',
+            '1' => 'Sub-Administrador',
+            '2' => 'Administrador'
+        ];
+        return $vetor[$cargo];
+    }
 ?>

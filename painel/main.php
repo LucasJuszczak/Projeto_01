@@ -28,8 +28,8 @@ if (isset($_GET['logout'])) {
             </div><!--avatar usuario-->
 
             <div class="nome-usuario">
-                <h2>Leandro</h2>
-                <p>Desenvolvedor</p>
+                <h2><?php echo $_SESSION['nome'];?></h2>
+                <p><?php echo pegaCargo($_SESSION['cargo']); ?></p>
             </div><!--nome usuario-->
         </div><!--box usuario-->
 

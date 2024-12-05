@@ -21,9 +21,13 @@
             $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
             $sql->execute(array($user, $password));
             if ($sql->rowCount() == 1) { 
+                $info = $sql ->fetch();
                 $_SESSION['login'] = true; 
                 $_SESSION['user'] = $user; 
                 $_SESSION['password'] = $password; 
+                $_SESSION['img'] = $info['img'];
+                $_SESSION['nome'] = $info['nome'];
+                $_SESSION['cargo'] = $info['cargo'];
                 header('Location: ' . INCLUDE_PATH_PAINEL); 
                 die();
             } else {
@@ -33,6 +37,7 @@
         ?>
 
         <form action="" method="post">
+            <img src="../ifpr_logo.png " alt="">
             <input type="text" name="user" placeholder="Login" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="submit" name="acao" value="Logar">
