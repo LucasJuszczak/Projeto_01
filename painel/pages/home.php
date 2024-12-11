@@ -17,3 +17,33 @@
         </div>
     </div>
 </div>
+
+<div class="box-content left w100">
+    <h2>
+        <i class="fa-brands fa-chrome"></i> Usuarios Online
+    </h2>
+    <div class="table-responsive">
+
+        <div class="row">
+            <div class="col left w50">
+                <h2>IP</h2>
+            </div>
+            <div class="col left w50">
+                <h2>Última Ação</h2>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+            <div class="row">
+                <div class="col left w50">
+                    <h2>198.162.0.1</h2>
+                </div>
+                <div class="col left w50">
+                    <h2>11/12/2024 20:43:00</h2>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div><!--table-responsive-->
+
+    </div><!--box-contente-->

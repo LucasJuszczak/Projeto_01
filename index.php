@@ -1,4 +1,5 @@
 <?php include('config.php'); ?>
+<?php Site::updateUserOnline(); ?>
 
 <!DOCTYPE html>
 <html lang="en, pt-br">

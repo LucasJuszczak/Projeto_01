@@ -8,6 +8,9 @@
 
     define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 
+    //fuso horario de SP
+    date_default_timezone_set('America/Sao_Paulo');
+
     define('NOME_EMPRESA', 'IFPR');
 
     //Banco de dados
