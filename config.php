@@ -8,6 +8,8 @@
 
     define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 
+    $nomeEmpresa = 'IFPR';
+
     //Banco de dados
 
     //Hospedagem
