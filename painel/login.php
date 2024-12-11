@@ -20,18 +20,18 @@
             $password = $_POST['password'];
             $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
             $sql->execute(array($user, $password));
-            if ($sql->rowCount() == 1) { 
-                $info = $sql ->fetch();
-                $_SESSION['login'] = true; 
-                $_SESSION['user'] = $user; 
-                $_SESSION['password'] = $password; 
+            if ($sql->rowCount() == 1) {
+                $info = $sql->fetch();
+                $_SESSION['login'] = true;
+                $_SESSION['user'] = $user;
+                $_SESSION['password'] = $password;
                 $_SESSION['img'] = $info['img'];
                 $_SESSION['nome'] = $info['nome'];
                 $_SESSION['cargo'] = $info['cargo'];
-                header('Location: ' . INCLUDE_PATH_PAINEL); 
+                header('Location: ' . INCLUDE_PATH_PAINEL);
                 die();
             } else {
-                echo '<div class="erro-box"><i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>'; 
+                echo '<div class="erro-box"><i class="fa-solid fa-x"></i>Usuário ou senha incorretos!</div>';
             }
         }
         ?>

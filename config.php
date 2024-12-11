@@ -8,7 +8,7 @@
 
     define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 
-    $nomeEmpresa = 'IFPR';
+    define('NOME_EMPRESA', 'IFPR');
 
     //Banco de dados
 
