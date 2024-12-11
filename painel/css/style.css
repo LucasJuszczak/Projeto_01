@@ -188,10 +188,41 @@ header {
 /*conteudo principal do painel*/
 .box-content{
     background-color: white;
+    padding: 20px;
+    box-shadow: 1px 1px 10px black;    
+}
+
+.box-content h2{
+    font-weight: 300;
+    font: 23px;
+}
+
+.box-metricas{
+    margin-top: 12px;
+    text-align: center;
+}
+
+.box-metricas-single{
+    float: left;
+    position: relative;
+    width: 33.3%;
+    padding-top: 10px;
+    min-height: 80px;
+    background-color: rgb(19, 149, 19);
+    border: 5px solid white;
+}
+
+.box-metricas .box-metricas-single:nth-of-type(2){
+    background-color: yellow;
+}
+
+.box-metricas .box-metricas-single:nth-of-type(3){
+    background-color: red;
 }
 
 .items-menu {
     margin-top: 30px;
+       
 }
 
 .items-menu h2 {
@@ -223,5 +254,9 @@ header {
     .content {
         width: 100%;
         left: 0;
+    }
+
+    .box-metricas-single{
+        width: 100%;
     }
 }
