@@ -36,7 +36,7 @@
 
             <div class="row">
                 <div class="col left w50">
-                    <h2>198.162.0.1</h2>
+                    <h2>192.168.0.1</h2>
                 </div>
                 <div class="col left w50">
                     <h2>11/12/2024 20:43:00</h2>
