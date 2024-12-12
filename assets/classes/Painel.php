@@ -22,8 +22,19 @@ class Painel
             } else {
                 header('Location: ' . INCLUDE_PATH_PAINEL);
             }
-        }else{
-             include('pages/home.php');
+        } else {
+            include('pages/home.php');
         }
+    }
+    public static function deleteUserOnline() {
+        $date = date('Y-m-d H:i:s');
+        MySql::conectar()->exec("DELETE FROM `tb_admin.online` WHERE ultima_acao < `$date` - INTERVAL 1 MINUTE");
+    }
+
+    public static function listUserOnline() {
+        self::deleteUserOnline();
+        $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.online`");
+        $sql->execute();
+        return $sql->fetchAll();
     }
 }
