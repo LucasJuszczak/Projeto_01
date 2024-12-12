@@ -43,7 +43,7 @@
         public static function getUserTotalToday(){
             $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas` WHERE dia = ?");
             $sql->execute(array(date('Y-m-d'))); 
-            return   $sql->rowCount();     
+            return  $sql->rowCount();     
         }
     }
 ?>
