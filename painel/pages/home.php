@@ -10,7 +10,7 @@
         </div>
         <div class="box-metricas-single">
             <h2>Visitas Hoje</h2>
-            <p>20</p>
+            <p><?php echo $getUserTotalToday?></p>
         </div>
         <div class="box-metricas-single">
             <h2>Visitas Totais</h2>
