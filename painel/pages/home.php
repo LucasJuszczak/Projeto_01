@@ -1,57 +1,59 @@
 <?php $usuariosOnline = Painel::listUserOnline(); ?>
+<?php $getUserTotal = Painel::getUserTotal(); ?>
 
 <div class="box-content left w100">
-    <h2>
-        <i class="fa-solid fa-house"></i> Painel de controle - <?php echo NOME_EMPRESA ?>
-    </h2>
+    <h2><i class="fa-solid fa-house"></i> Painel de Controle - <?php echo NOME_EMPRESA;?></h2>
     <div class="box-metricas">
         <div class="box-metricas-single">
-            <h2>Usuarios online</h2>
-            <p>10</p>
+            <h2>Usuários Online</h2>
+            <p><?php echo count($usuariosOnline);?></p>
         </div>
         <div class="box-metricas-single">
-            <h2>Visitas hoje</h2>
+            <h2>Visitas Hoje</h2>
             <p>20</p>
         </div>
         <div class="box-metricas-single">
-            <h2>Visitas totais</h2>
-            <p>30</p>
+            <h2>Visitas Totais</h2>
+            <p> <?php echo $getUserTotal?></p>
         </div>
     </div>
+    <!--box-metricas-->
 </div>
+<!--box-content-->
 
 <div class="box-content left w100">
-    <h2>
-        <i class="fa-brands fa-chrome"></i> Usuarios Online
-    </h2>
+    <h2><i class="fa-brands fa-chrome"></i> Usuários Online</h2>
     <div class="table-responsive">
-
         <div class="row">
             <div class="col left w50">
                 <h2>IP</h2>
             </div>
+            <!--col-->
             <div class="col left w50">
                 <h2>Última Ação</h2>
             </div>
+            <!--col-->
             <div class="clear"></div>
         </div>
+        <!--row-->
 
-        <?php foreach ($variable as $key => $value) {
-            
-        } 
+        <?php foreach ($usuariosOnline as $key => $value) {?>
 
-        ?>
-
-            <div class="row">
-                <div class="col left w50">
-                    <h2>192.168.0.1</h2>
-                </div>
-                <div class="col left w50">
-                    <h2>11/12/2024 20:43:00</h2>
-                </div>
-                <div class="clear"></div>
+        <!--Exemplo de inputs-->
+        <div class="row">
+            <div class="col left w50">
+                <h2><?php echo $value['ip'];?></h2>
             </div>
-
-        </div><!--table-responsive-->
-
-    </div><!--box-contente-->
+            <!--col-->
+            <div class="col left w50">
+                <h2><?php echo date('d/m/Y H:i:s', strtotime($value['ultima_acao']));?></h2>
+            </div>
+            <!--col-->
+            <div class="clear"></div>
+        </div>
+        <!--row-->
+        <?php }?>
+    </div>
+    <!--table-responsive-->
+</div>
+<!--box-content-->
