@@ -15,7 +15,7 @@
         <label for="imagem">Imagem:</label>
         <input type="file" name="imagem">
     </div>
-    div class="form-group">
+    <div class="form-group">
         <input type="submit" name="acao" value="Atualizar">
     </div>
     
