@@ -75,5 +75,9 @@
         return false;
         
     }
+
+    public static function deleteFile($file){
+        @unlink('uploads/'.$file);
+    }
 }
 ?>

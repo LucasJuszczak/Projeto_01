@@ -40,4 +40,12 @@
         ];
         return $vetor[$cargo];
     }
+
+    function selecionaMenu($menuItem){
+        $url = explode('/', @$_GET['url'])[0];
+        if ($url == $menuItem){
+            echo 'class="menu-active"';
+
+        }
+    }
 ?>

@@ -14,8 +14,10 @@
             if ($imagem['name'] != '') {
                 # usuario selecionou a img...
                 if(Painel::validImage($imagem)){
+                    Painel::deleteFile($imagem_atual);
                     $imagem = Painel::uploadFile($imagem);
                     if($usuario->updateUser($nome, $password, $imagem)){
+                        $_SESSION['img'] = $imagem;
                         Painel::messageToUser('Sucesso', 'Atualizado com sucesso!');
                     }else{
                         Painel::messageToUser('erro', 'Não foi possivel atualizar!');
