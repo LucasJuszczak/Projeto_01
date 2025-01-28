@@ -13,8 +13,9 @@
 
     define('NOME_EMPRESA', 'IFPR');
 
-    //Banco de dados
+    define ('BASE_DIR_PAINEL', __DIR__.'/painel/');
 
+    //Banco de dados
     //Hospedagem
     define('HOST', 'localhost');
     //Banco

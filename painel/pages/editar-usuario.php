@@ -1,28 +1,29 @@
 <div class="box-content">
 
-<h2><i class ="fas ga-edit"></i> Editar usuário</h2>
+<h2><i class ="fas fa-edit"></i> Editar usuário</h2>
 
 <form method ="post"enctype="multipart/form-data">
     <?php
         if(isset($_POST['acao'])){
             $nome = $_POST['nome'];
             $password = $_POST['password'];
-            $imagem = $_POST['imagem'];
+            $imagem = $FILES['imagem'];
             $imagem_atual = $_POST['imagem_atual'];
             $usuario = new Usuario();
 
             if ($imagem['name'] != '') {
                 # usuario selecionou a img...
-            }else{
-                # usuario não selecionou a img...
-                $imagem = $imagem_atual;
-                if ($usuario->updateUser($nome, $password, $imagem)) {
-                    Painel::messageToUser('sucesso', 'Atualizado com sucesso!');
-                }else{
-                    Painel::messageToUser('erro', 'Não foi possivel atualizar!');
+                if(Painel::validImage($imagem)){
+                    $imagem = Painel::uploadFile($imagem);
+                    if($usuario->updateUser($nome, $password, $imagem)){
+                        Painel::messageToUser('Sucesso', 'Atualizado com sucesso!');
+                    }else{
+                        Painel::messageToUser('erro', 'Não foi possivel atualizar!');
+                    }
+                    }else{
+                        Painel::messageToUser('erro', 'Formatos de imagem permitidos (JPEG, JPG ou PNG');
+                    }
                 }
-            }
-           
         }
         ?>
     <div class="form-group">
