@@ -48,4 +48,13 @@
 
         }
     }
+
+    function verificaPermissaoMenu($permissao){
+        if ($_SESSION['cargo'] >= $permissao){
+            return true;
+        }else{
+            echo 'style="display:none"';
+        }
+        
+    }
 ?>

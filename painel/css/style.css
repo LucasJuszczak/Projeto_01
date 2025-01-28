@@ -267,6 +267,12 @@ header {
     padding: 6px;
     border-bottom: 2px solid white;
 }
+.menu-active{
+    background-color: black;
+}
+.menu-active::before{
+    content: '> ';
+}
 
 .box-content form{
     margin: 30px;

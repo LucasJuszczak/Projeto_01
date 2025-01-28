@@ -50,7 +50,7 @@ if (isset($_GET['logout'])) {
             <a <?php selecionaMenu('listar-servicos')?> href="">Serviços</a>
             <h2>Usuario</h2>
             <a <?php selecionaMenu('editar-usuario')?> href="<?php echo INCLUDE_PATH_PAINEL; ?>editar-usuario">Editar</a>
-            <a <?php selecionaMenu('adicionar-usuario')?> href="">Adicionar</a>
+            <a <?php selecionaMenu('adicionar-usuario')?> <?php verificaPermissaoMenu(2) ?> href="<?php echo INCLUDE_PATH_PAINEL;?>adicionar-usuario"></a>
             <h2>Configuração</h2>
             <a <?php selecionaMenu('editar')?> href="">Editar</a>
         </div><!--items-menu-->
