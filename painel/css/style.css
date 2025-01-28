@@ -292,6 +292,18 @@ header {
     color: white;
     box-shadow: 1px 1px 10px rgb(19, 149, 19);
 }
+.box-alert{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.sucesso{
+    background-color: rgb(75, 221, 75);
+}
+.erro{
+    background-color: red;
+}
 
 /*mobile*/
 
