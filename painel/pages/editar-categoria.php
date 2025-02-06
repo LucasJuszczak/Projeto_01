@@ -1,7 +1,7 @@
 <?php
     if(isset($_GET['id'])){
         $id = (int) $_GET['id'];
-        $servico = Painel::get('tb_admin.categorias', 'id = ?', array($id));
+        $categoria = Painel::get('tb_admin.categorias', 'id = ?', array($id));
     }else{
         Painel::messageToUser('erro', 'ID não existe');
         die();
@@ -34,7 +34,7 @@
         ?>
         <div class="form-group">
             <label for="categorias">Categoria: </label>
-            <input type="text" name="nome" value="<?php echo $categoria['categoria'];?>">
+            <input type="text" name="nome" value="<?php echo $categoria['nome'];?>">
         </div>
         <!--form group-->
 

@@ -54,4 +54,11 @@
             die();
         }
     }
+
+    // Função para recuperar os campos
+    function recoverPost($post){
+        if(isset($_POST[$post])){
+            echo $_POST[$post];
+        }
+    }
 ?>
