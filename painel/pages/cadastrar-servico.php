@@ -12,13 +12,8 @@
         }
         ?>
         <div class="form-group">
-            <label for="depoimento">Serviço: </label>
-            <textarea name="servico" required></textarea>
-        </div>
-        <!--form group-->
-        <div class="form-group">
-            <label for="nome">Data: </label>
-            <input formato="data" type="text" name="data" required>
+            <label for="servico">Serviço: </label>
+            <textarea class="tinymce" name="servico" id=""><?php recoverPost('servico');?></textarea>
         </div>
         <!--form group-->
         <div class="form-group">

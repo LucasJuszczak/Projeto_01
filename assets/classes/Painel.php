@@ -94,7 +94,7 @@
         public static function uploadFile($file){
             $formatoArquivo = explode('.', $file['name']);
             $nomeImagem = uniqid().'.'.$formatoArquivo[count($formatoArquivo) - 1];
-            if(move_uploaded_file($file['tmp_name'], BASE_DIR_PAINEL.'uploads/'.$nomeImagem))
+            if(move_uploaded_file($file['tmp_name'], BASE_DIR_PAINEL . 'uploads/' . $nomeImagem))
                 return $nomeImagem;
             return false;
         }
@@ -112,26 +112,33 @@
         public static function insert($arr){
             $certo = true;
             $nomeTabela = $arr['nomeTabela'];
-            $query =  "INSERT INTO `$nomeTabela` VALUES (null";
+            $colunas = [];
+            $placeholders = [];
+            $parametros = [];
+        
             foreach ($arr as $key => $value){
-                $nome = $key;
-                if($nome == 'acao' || $nome == 'nomeTabela')
+                if($key == 'acao' || $key == 'nomeTabela')
                     continue;
                 if($value == ''){
                     $certo = false;
                     break;
                 }
-                $query .=",?";
+                $colunas[] = $key;
+                $placeholders[] = "?";
                 $parametros[] = $value;
             }
-            $query .=")";
+        
             if($certo){
+                $colunas = implode(", ", $colunas);
+                $placeholders = implode(", ", $placeholders);
+                $query = "INSERT INTO `$nomeTabela` ($colunas) VALUES ($placeholders)";
                 $sql = MySql::conectar()->prepare($query);
                 $sql->execute($parametros);
+        
                 $lastId = MySql::conectar()->lastInsertId();
                 $sql = MySql::conectar()->prepare("UPDATE `$nomeTabela` SET order_id = ? WHERE id = $lastId");
                 $sql->execute(array($lastId));
-            }  
+            }
             return $certo;
         }
 
@@ -177,9 +184,10 @@
             $first = false;
             $nomeTabela = $arr['nomeTabela'];
             $query = "UPDATE `$nomeTabela` SET ";
+            $parametros = [];
             foreach($arr as $key => $value){
                 $nome = $key;
-                if($nome == 'acao' || $nome =='nomeTabela' || $nome = 'id')
+                if($nome == 'acao' || $nome =='nomeTabela' || $nome == 'id')
                     continue;
                 if($value == ''){
                     $certo = false;
@@ -208,9 +216,12 @@
 
         public static function orderItem($tabela, $orderType, $id){
             if ($orderType == 'up'){
-                $infoItemAtual = Painel::get($tabela, 'id=?', array('$id'));
+                $infoItemAtual = Painel::get($tabela, 'id=?', array($id));
                 $order_id = $infoItemAtual['order_id'];
-                $itemBefore = MySql::conectar()->prepare("SELECT * FROM `$tabela` WHERE order_id < $order_id ORDER BY order_id DESC LIMIT 1");
+                $itemBefore = MySql::conectar()->prepare("SELECT * FROM `$tabela` 
+                                                          WHERE order_id < $order_id 
+                                                          ORDER BY order_id DESC 
+                                                          LIMIT 1");
                 $itemBefore->execute();
                 if ($itemBefore->rowCount() == 0)
                     return;
@@ -222,9 +233,11 @@
                                      'id' => $infoItemAtual['id'],
                                      'order_id' => $itemBefore['order_id']));
             }else if($orderType == 'down'){
-                $infoItemAtual = Painel::get($tabela, 'id=?', array('$id'));
+                $infoItemAtual = Painel::get($tabela, 'id=?', array($id));
                 $order_id = $infoItemAtual['order_id'];
-                $itemBefore = MySql::conectar()->prepare("SELECT * FROM `$tabela` WHERE order_id > $order_id ORDER BY order_id ASC LIMIT 1");
+                $itemBefore = MySql::conectar()->prepare("SELECT * FROM `$tabela` 
+                                                          WHERE order_id > $order_id 
+                                                          ORDER BY order_id ASC LIMIT 1");
                 $itemBefore->execute();
                 if ($itemBefore->rowCount() == 0)
                     return;

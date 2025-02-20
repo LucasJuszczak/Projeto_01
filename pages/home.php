@@ -77,8 +77,8 @@ $slides = $slides->fetchAll();
     <div class="center">
         <div id="depoimentos" class="w50 left depoimentos-container">
             <h2 class="title">Depoimentos</h2>
-            <?php 
-                $sql = MySql::conectar()->prepare("SELECT * FROM `tb.admin.depoimentos` ORDER BY order_id DESC LIMIT 3");
+            <?php
+                $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.depoimentos` ORDER BY order_id DESC LIMIT 3");
                 $sql->execute();
                 $depoimentos = $sql->fetchAll();
                 foreach ($depoimentos as $key => $value) {?>
@@ -97,8 +97,8 @@ $slides = $slides->fetchAll();
         <div id="servicos" class="w50 left servicos-container">
             <h2 class="title">Serviços</h2>
             <div class="servicos">
-                <?php 
-                    $sql = MySql::conectar()->prepare("SELECT * FROM `tb.admin.servicos` ORDER BY order_id DESC LIMIT 3");
+                <?php
+                    $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.servicos` ORDER BY order_id DESC LIMIT 3");
                     $sql->execute();
                     $depoimentos = $sql->fetchAll();
                     ?>

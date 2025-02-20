@@ -9,7 +9,7 @@
 
 $paginaAtual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
 $porPagina = 4;
-$depoimentos = Painel::getAll('tb_admin.servicos', ($paginaAtual - 1) * $porPagina, $porPagina);
+$servicos = Painel::getAll('tb_admin.servicos', ($paginaAtual - 1) * $porPagina, $porPagina);
 ?>
 
 <div class="box-content">
@@ -24,13 +24,21 @@ $depoimentos = Painel::getAll('tb_admin.servicos', ($paginaAtual - 1) * $porPagi
                 <td>Descer</td>
                 <td>Subir</td>
             </tr>
-            <?php foreach (@$servicos as $key => $value) { ?>
+            <?php foreach ($servicos as $key => $value) { ?>
             <tr>
                 <td><?php echo $value['servico']; ?></td>
-                <td><a class="edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-servico?id=<?php echo $value['id']; ?>"><i class="fas fa-edit"></i></a></td>
-                <td><a actionBtn="delete" class="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?excluir=<?php echo $value['id'];?>"><i class="fas fa-trash"></i></a></td>
-                <td><a class="order-down" href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-servicos?order=up&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-down"></i></a></td>
-                <td><a class="order-up" href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-servicos?order=down&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-up"></i></a></td>
+                <td><a class="edit"
+                        href="<?php echo INCLUDE_PATH_PAINEL ?>editar-servico?id=<?php echo $value['id']; ?>"><i
+                            class="fas fa-edit"></i></a></td>
+                <td><a actionBtn="delete" class="delete"
+                        href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?excluir=<?php echo $value['id'];?>"><i
+                            class="fas fa-trash"></i></a></td>
+                <td><a class="order-down"
+                        href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-servicos?order=up&id=<?php echo $value['id']; ?>"><i
+                            class="fa-solid fa-angle-down"></i></a></td>
+                <td><a class="order-up"
+                        href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-servicos?order=down&id=<?php echo $value['id']; ?>"><i
+                            class="fa-solid fa-angle-up"></i></a></td>
             </tr>
             <?php } ?>
         </table>

@@ -25,14 +25,24 @@ $depoimentos = Painel::getAll('tb_admin.depoimentos', ($paginaAtual - 1) * $porP
                 <td>Descer</td>
                 <td>Subir</td>
             </tr>
-            <?php foreach (@$depoimentos as $key => $value) { ?>
+            <?php foreach ($depoimentos as $key => $value) { 
+                
+            ?>
             <tr>
                 <td><?php echo $value['data']; ?></td>
                 <td><?php echo $value['nome']; ?></td>
-                <td><a class="edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-depoimento?id=<?php echo $value['id']; ?>"><i class="fas fa-edit"></i></a></td>
-                <td><a actionBtn="delete" class="delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos?excluir=<?php echo $value['id'];?>"><i class="fas fa-trash"></i></a></td>
-                <td><a class="order-down" href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-depoimentos?order=up&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-down"></i></a></td>
-                <td><a class="order-up" href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-depoimentos?order=down&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-up"></i></a></td>
+                <td><a class="edit"
+                        href="<?php echo INCLUDE_PATH_PAINEL ?>editar-depoimento?id=<?php echo $value['id']; ?>"><i
+                            class="fas fa-edit"></i></a></td>
+                <td><a actionBtn="delete" class="delete"
+                        href="<?php echo INCLUDE_PATH_PAINEL ?>listar-depoimentos?excluir=<?php echo $value['id'];?>"><i
+                            class="fas fa-trash"></i></a></td>
+                <td><a class="order-down"
+                        href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-depoimentos?order=up&id=<?php echo $value['id']; ?>"><i
+                            class="fa-solid fa-angle-down"></i></a></td>
+                <td><a class="order-up"
+                        href="<?php echo INCLUDE_PATH_PAINEL; ?>listar-depoimentos?order=down&id=<?php echo $value['id']; ?>"><i
+                            class="fa-solid fa-angle-up"></i></a></td>
             </tr>
             <?php } ?>
         </table>
@@ -44,9 +54,9 @@ $depoimentos = Painel::getAll('tb_admin.depoimentos', ($paginaAtual - 1) * $porP
             $totalPaginas = ceil(count(Painel::getAll('tb_admin.slides')) / $porPagina);
             for ($i = 1; $i <= $totalPaginas ; $i++){
                 if($i == $paginaAtual)
-                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-slides?pagina=' . $i . '">' . $i . '</a';
+                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-depoimentos?pagina=' . $i . '">' . $i . '</a';
                 else
-                    echo '<a href="' . INCLUDE_PATH_PAINEL . 'listar-slides?pagina=' . $i . '">' . $i . '</a>';
+                    echo '<a href="' . INCLUDE_PATH_PAINEL . 'listar-depoimentos?pagina=' . $i . '">' . $i . '</a>';
             }
         ?>
     </div>
