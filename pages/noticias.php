@@ -88,6 +88,7 @@
                     }
                 }
 
+                $porPagina = 10;
                 if(!isset($_POST['parametro'])){
                     if(isset($_GET['pagina'])){
                         $pagina = (int)$_GET['pagina'];

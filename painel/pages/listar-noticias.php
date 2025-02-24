@@ -40,7 +40,7 @@ $noticias = Painel::getAll('tb_admin.noticias', ($paginaAtual - 1) * $porPagina,
             <tr>
                 <td><?php echo $value['titulo']; ?></td>
                 <td><?php echo $nomeCategoria ?></td>
-                <td><img style="width:60px; height=60px;" ;
+                <td><img style="width:60px; height:60px;" ;
                         src="<?php echo INCLUDE_PATH_PAINEL;?>uploads/<?php echo $value['capa'];?>"></td>
                 <td><a class="edit"
                         href="<?php echo INCLUDE_PATH_PAINEL ?>editar-noticias?id=<?php echo $value['id']; ?>"><i
