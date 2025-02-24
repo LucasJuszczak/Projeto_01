@@ -65,7 +65,7 @@ $noticias = Painel::getAll('tb_admin.noticias', ($paginaAtual - 1) * $porPagina,
             $totalPaginas = ceil(count(Painel::getAll('tb_admin.noticias')) / $porPagina);
             for ($i = 1; $i <= $totalPaginas ; $i++){
                 if($i == $paginaAtual)
-                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-noticias?pagina=' . $i . '">' . $i . '</a';
+                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-noticias?pagina=' . $i . '">' . $i . '</a>';
                 else
                     echo '<a href="' . INCLUDE_PATH_PAINEL . 'listar-noticias?pagina=' . $i . '">' . $i . '</a>';
             }

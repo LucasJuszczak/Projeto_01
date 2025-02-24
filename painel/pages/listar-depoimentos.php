@@ -8,7 +8,7 @@
     }
 
 $paginaAtual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
-$porPagina = 2;
+$porPagina = 4;
 $depoimentos = Painel::getAll('tb_admin.depoimentos', ($paginaAtual - 1) * $porPagina, $porPagina);
 ?>
 
@@ -54,7 +54,7 @@ $depoimentos = Painel::getAll('tb_admin.depoimentos', ($paginaAtual - 1) * $porP
             $totalPaginas = ceil(count(Painel::getAll('tb_admin.slides')) / $porPagina);
             for ($i = 1; $i <= $totalPaginas ; $i++){
                 if($i == $paginaAtual)
-                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-depoimentos?pagina=' . $i . '">' . $i . '</a';
+                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-depoimentos?pagina=' . $i . '">' . $i . '</a>';
                 else
                     echo '<a href="' . INCLUDE_PATH_PAINEL . 'listar-depoimentos?pagina=' . $i . '">' . $i . '</a>';
             }

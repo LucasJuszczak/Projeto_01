@@ -63,7 +63,7 @@ $categorias = Painel::getAll('tb_admin.categorias', ($paginaAtual - 1) * $porPag
             $totalPaginas = ceil(count(Painel::getAll('tb_admin.categorias')) / $porPagina);
             for ($i = 1; $i <= $totalPaginas ; $i++){
                 if($i == $paginaAtual)
-                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-categorias?pagina=' . $i . '">' . $i . '</a';
+                    echo '<a class="page-selected" href="' . INCLUDE_PATH_PAINEL . 'listar-categorias?pagina=' . $i . '">' . $i . '</a>';
                 else
                     echo '<a href="' . INCLUDE_PATH_PAINEL . 'listar-categorias?pagina=' . $i . '">' . $i . '</a>';
             }

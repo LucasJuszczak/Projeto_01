@@ -46,8 +46,6 @@ $infoSite = $infoSite->fetch();
     <base base="<?php echo INCLUDE_PATH; ?>" />
 
     <?php
-    //echo $_GET["url"]; printar na tela a url
-
     // Obtendo a url se exister ou home
     $url = isset($_GET['url']) ? $_GET['url'] : 'home';
     switch ($url) {
@@ -65,7 +63,7 @@ $infoSite = $infoSite->fetch();
         <div class="center">
             <div class="logo left">
                 <a href="<?php echo INCLUDE_PATH;?>">
-                    <img src="<?php echo INCLUDE_PATH;?>ifpr_logo.png" alt="IFPR">
+                    <img src="<?php echo INCLUDE_PATH;?>arqweb_logo.png" alt="ArqWeb: Design e Inovação">
                 </a>
             </div>
             <nav class="desktop right">
@@ -118,7 +116,7 @@ $infoSite = $infoSite->fetch();
     <!--footer-->
     <footer <?php if (isset($pagina404) && $pagina404 == true) echo 'class="fixed"'; ?>>
         <div class="center">
-            <p>Todos os direitos reservados!</p>
+            <p>ArqWeb: Design e Inovação | Todos os direitos reservados!</p>
         </div>
     </footer>
     <!--footer-->

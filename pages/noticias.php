@@ -1,14 +1,23 @@
 <?php
-    $url = explode('/', $_GET['url']);
-    if(!isset($url[2])){
+$porPagina = 10; 
+
+// Função para truncar texto sem cortar palavras
+function truncateText($text, $length) {
+    if (strlen($text) > $length) {
+        $text = substr($text, 0, $length);
+        $text = substr($text, 0, strrpos($text, ' ')) . '...';
+    }
+    return $text;
+}
+
+$url = explode('/', $_GET['url']);
+if (!isset($url[2])) {
 ?>
 
 <section class="header-noticias">
     <div class="center">
-        <h2><i class="fa-solid fa-bell"></i></h2>
-        <h2>Acompanhe as últimas notícias do portal</h2>
+        <h2><i class="fa-solid fa-bell"></i> Acompanhe as últimas notícias da arquitetura!</h2>
     </div>
-    <!--center-->
 </section>
 
 <section class="container-portal">
@@ -17,30 +26,26 @@
             <div class="box-content-sidebar">
                 <h3><i class="fas fa-search"></i> Pesquisar: </h3>
                 <form method="post" action="">
-                    <input type="text" name="parametro" placeholder="Digite..." required>
-                    <input type="submit" name="buscar" value="Pesquisar">
+                    <input type="text" name="busca" placeholder="Digite..." required>
+                    <input type="submit" name="acao" value="Pesquisar">
                 </form>
             </div>
             <!--box-content-sidebar-->
 
             <div class="box-content-sidebar">
                 <h3><i class="fas fa-list"></i> Selecione a Categoria: </h3>
-                <form action="">
-                    <select name="categoria" id="">
-                        <option value="" selected="">Todas as Categorias</option>
+                <form method="get" action="">
+                    <select name="categoria" onchange="this.form.submit()">
+                        <option value="" selected>Todas as categorias</option>
                         <?php
-                        $categorias = MySql::conectar()->prepare("SELECT * 
-                                                                  FROM `tb_admin.categorias`
-                                                                  ORDER BY order_id DESC");
-                        $categorias->execute();
-                        $categorias = $categorias->fetchAll();
-
-                        foreach ($categorias as $key => $value) {
-                        ?>
-                        <option <?php if($value['slug'] == @$url[1]) echo 'selected'; ?>
-                            value="<?php echo $value['slug'] ?>">
-                            <?php echo $value['nome']; ?></option>
-                        <?php } ?>
+                            $categorias = MySql::conectar()->prepare("SELECT * FROM `tb_admin.categorias` ORDER BY order_id DESC");
+                            $categorias->execute();
+                            $categorias = $categorias->fetchAll();
+                            foreach ($categorias as $value) {
+                                $selected = (@$_GET['categoria'] == $value['slug']) ? 'selected' : '';
+                                echo '<option value="' . htmlspecialchars($value['slug'], ENT_QUOTES, 'UTF-8') . '" ' . $selected . '>' . htmlspecialchars($value['nome'], ENT_QUOTES, 'UTF-8') . '</option>';
+                            }
+                            ?>
                     </select>
                 </form>
             </div>
@@ -50,7 +55,7 @@
                 <h3><i class="fas fa-user"></i> Sobre o autor: </h3>
                 <div class="text-center">
                     <div>
-                        <img src="<?php echo INCLUDE_PATH; ?>assets/img/local-trabalho.png">
+                        <img src="<?php echo INCLUDE_PATH; ?>assets/img/arqWeb.png">
                     </div>
                     <?php echo $infoSite['nome_autor']; ?>
                     <?php echo $infoSite['descricao']; ?>
@@ -61,102 +66,98 @@
         </div>
         <!--sidebar-->
 
+
         <div class="conteudo-portal">
             <div class="header-conteudo-portal">
                 <?php
-                if (!isset($_POST['parametro'])) {
-                    if (@$categoria['nome'] == '') {
+                    $categoriaSelecionada = null;
+                    // Verifica se uma categoria foi selecionada
+                    if (isset($_GET['categoria']) && !empty($_GET['categoria'])) {
+                        $categoriaSlug = htmlspecialchars($_GET['categoria'], ENT_QUOTES, 'UTF-8');
+                        $categoriaSelecionada = Painel::get('tb_admin.categorias', 'slug = ?', array($categoriaSlug));
+                        if ($categoriaSelecionada) {
+                            echo '<h2>Visualizando Posts em <span>' . htmlspecialchars($categoriaSelecionada['nome'], ENT_QUOTES, 'UTF-8') . '</span></h2>';
+                        }
+                    } else {
                         echo '<h2>Visualizando Todos os Posts</h2>';
-                    } else{
-                        echo '<h2>Visualizando Post em <span>' . $categoria['nome'] . '</span></h2>';
                     }
-                } else {
-                    echo '<h2><i class="fa fa-check"></i> '.$_POST['parametro'].'</h2>';
-                }
 
-                $query = "SELECT * FROM `tb_admin.noticias` ";
-                if(@$categoria['nome'] != ''){
-                    $query.="WHERE categoria_id = $categoria[id]";
-                }
-
-                if(isset($_POST['parametro'])){
-                    $parametro = $_POST['parametro'];
-                    if(strstr($query, 'WHERE') !== false){
-                        $query .= " AND titulo LIKE '%parametro%'";
-                    }else{
-                        $query .= " WHERE titulo LIKE '%parametro%'";
+                    // Verifica se o formulário de pesquisa foi enviado
+                    $busca = '';
+                    if (isset($_POST['acao']) && isset($_POST['busca'])) {
+                        $busca = htmlspecialchars($_POST['busca'], ENT_QUOTES, 'UTF-8');
+                        echo '<h2><i class="fa fa-check"></i> Resultados para: ' . $busca . '</h2>';
                     }
-                }
 
-                $porPagina = 10;
-                if(!isset($_POST['parametro'])){
-                    if(isset($_GET['pagina'])){
+                    // Consulta para buscar notícias
+                    $query = "SELECT * FROM `tb_admin.noticias`";
+                    $where = [];
+                    $params = [];
+
+                    // Filtro por categoria
+                    if ($categoriaSelecionada) {
+                        $where[] = "categoria_id = ?";
+                        $params[] = $categoriaSelecionada['id'];
+                    }
+
+                    // Filtro por pesquisa
+                    if (!empty($busca)) {
+                        $where[] = "titulo LIKE ?";
+                        $params[] = "%$busca%";
+                    }
+
+                    // Combina os filtros na query
+                    if (!empty($where)) {
+                        $query .= " WHERE " . implode(" AND ", $where);
+                    }
+
+                    $query .= " ORDER BY order_id DESC";
+
+                    // Paginação
+                    if (isset($_GET['pagina'])) {
                         $pagina = (int)$_GET['pagina'];
                         $queryPagina = ($pagina - 1) * $porPagina;
-                        $query .= " ORDER BY order_id DESC LIMIT $queryPagina, $porPagina";
-                    }else{
-                        $pagina = 1;
-                        $query .= " ORDER BY order_id DESC LIMIT 0, $porPagina";
+                        $query .= " LIMIT $queryPagina, $porPagina";
+                    } else {
+                        $query .= " LIMIT 0, $porPagina";
                     }
-                }else{
-                    $query .= " ORDER BY order_id DESC LIMIT 0, $porPagina";
-                }
 
-                $noticias = MySql::conectar()->prepare($query);
-                $noticias->execute();
-                $noticias = $noticias->fetchAll();
-                ?>
-            </div>
-            <!--header-conteudo-portal-->
+                    $noticias = MySql::conectar()->prepare($query);
+                    $noticias->execute($params);
+                    $noticias = $noticias->fetchAll();
 
-            <?php foreach ($noticias as $key => $value) {
-                $sql = MySql::conectar()->prepare("SELECT `slug` FROM `tb_admin.categorias` WHERE id = ?");
-                $sql->execute(array($value['categoria_id']));
-                $categoriaNome = $sql->fetch()['slug'];
-            ?>
-            <div class="box-single-conteudo">
-                <h2><?php echo $value['titulo'];?></h2>
-                <p><?php echo substr(strip_tags($value['conteudo']),0,400).'...';?></p>
-                <a href="<?php echo INCLUDE_PATH; ?>noticias/
-                             <?php echo $categoriaNome; ?>/
-                             <?php echo $value['slug'];?>">Leia mais</a>
-            </div>
-            <!--box-single-conteudo-->
-            <?php } ?>
-
-            <?php
-                $query = "SELECT * FROM `tb_admin.noticias` ";
-                if(@$categoria['nome'] != ''){
-                    $query.="WHERE categoria_id = $categoria[id]";
-                }
-                $totalPaginas = MySql::conectar()->prepare($query);
-                $totalPaginas->execute();
-                $totalPaginas = ceil($totalPaginas->rowCount() / $porPagina);
-            ?>
-        </div>
-        <!--conteudo-portal-->
-        <div class="clear"></div>
-        <div class="conteudo-portal">
-            <div class="paginator">
-                <?php
-                    if (!isset($_POST['parametro'])) {
-                        for ($i = 1; $i <= $totalPaginas; $i++){
-                            @$categoriaStr = ($categoria['nome'] != '') ? '/' . $categoria['slug'] : '';
-                            if (@$pagina == $i){    
-                            echo '<a class="active-page" href="' . INCLUDE_PATH . 'noticias?pagina=' . $categoriaStr . $i . '">' . $i . '</a>';
-                        } else {
-                            echo '<a href="' . INCLUDE_PATH . 'noticias?pagina=' . $categoriaStr . $i . '">' . $i . '</a>';
-                            }
+                    if (empty($noticias)) {
+                        echo '<p>Nenhuma notícia encontrada.</p>';
+                    } else {
+                        foreach ($noticias as $value) {
+                            $categoriaNome = Painel::get('tb_admin.categorias', 'id = ?', array($value['categoria_id']))['nome'];
+                            echo '<div class="box-single-conteudo">
+                                    <h2>' . htmlspecialchars($value['titulo'], ENT_QUOTES, 'UTF-8') . '</h2>
+                                    <p>' . truncateText(strip_tags($value['conteudo']), 400) . '</p>
+                                    <a href="' . INCLUDE_PATH . 'noticias/' . htmlspecialchars($categoriaNome, ENT_QUOTES, 'UTF-8') . '/' . htmlspecialchars($value['slug'], ENT_QUOTES, 'UTF-8') . '">Leia mais</a>
+                                  </div>';
                         }
                     }
+                    ?>
+
+                <div class="paginator">
+                    <?php
+                    $totalPaginas = ceil(count(Painel::getAll('tb_admin.noticias')) / $porPagina);
+                    for ($i = 1; $i <= $totalPaginas; $i++) {
+                        if ($i == @$pagina) {
+                            echo '<a class="page-selected" href="' . INCLUDE_PATH . 'noticias?pagina=' . $i . '">' . $i . '</a>';
+                        } else {
+                            echo '<a href="' . INCLUDE_PATH . 'noticias?pagina=' . $i . '">' . $i . '</a>';
+                        }
+                    } 
                 ?>
+                </div>
+                <!--paginator-->
             </div>
-            <!--paginator-->
+            <!--header-conteudo-portal-->
         </div>
         <!--conteudo-portal-->
-        <div class="clear"></div>
     </div>
-    <!--center-->
 </section>
 
 <?php } else{

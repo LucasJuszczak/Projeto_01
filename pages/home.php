@@ -35,7 +35,7 @@ $slides = $slides->fetchAll();
     <div class="center">
         <div class="w50 left">
             <h2 class="text-center">
-                <img src="<?php echo INCLUDE_PATH; ?>assets/img/local-trabalho.jpg">
+                <img src="<?php echo INCLUDE_PATH; ?>assets/img/arqweb.png">
                 <?php echo $infoSite['nome_autor']; ?>
             </h2>
             <h3 class="text-center">
@@ -98,7 +98,7 @@ $slides = $slides->fetchAll();
             <h2 class="title">Serviços</h2>
             <div class="servicos">
                 <?php
-                    $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.servicos` ORDER BY order_id DESC LIMIT 3");
+                    $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.servicos` ORDER BY order_id DESC LIMIT 4");
                     $sql->execute();
                     $depoimentos = $sql->fetchAll();
                     ?>

@@ -2,8 +2,8 @@
     if(isset($_COOKIE['lembrar'])) {
         @$user = $_COOKIE['user'];
         @$password = $_COOKIE['password'];
-        $sql = MySql::conectar->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
-        $sql = execute(array($user, $password));
+        $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.usuarios` WHERE user = ? AND password = ?");
+        $sql->execute(array($user, $password));
         if ($sql->rowCount() == 1) {
             $info = $sql->fetch();
             $_SESSION['login'] = true;
@@ -66,12 +66,12 @@
                         header('Location: ' . INCLUDE_PATH_PAINEL);
                         die();
                     } else {
-                        echo '<div class="erro-box"><i class="fa-solid fa-times"></i>Usuário ou senha incorretos!</div>';
+                        echo '<div class="erro-box"><i class="fa-solid fa-times"></i> Usuário ou senha incorretos!</div>';
                     }
                 }
             ?>
 
-            <img src="ifpr-login.png">
+            <img src="<?php echo INCLUDE_PATH; ?>assets/img/arqweb_login.png">
 
             <form action="" method="post">
                 <input type="text" name="user" placeholder="Login" required>
