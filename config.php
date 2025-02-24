@@ -12,7 +12,7 @@
     define('BASE_DIR_PAINEL', __DIR__.'/painel/'); // Diretório base as imagens
 
     //Banco de dados
-    define('HOST', 'localhost'); //Hospedagem
+    define('HOST', 'localhost:3307'); //Hospedagem
     define('DATABASE', 'projeto_01'); //Banco
     define('USER', 'root'); //Usuario
     define('PASSWORD', ''); //Senha
