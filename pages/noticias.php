@@ -142,12 +142,13 @@
                         for ($i = 1; $i <= $totalPaginas; $i++){
                             @$categoriaStr = ($categoria['nome'] != '') ? '/' . $categoria['slug'] : '';
                             if (@$pagina == $i){    
-                            echo '<a class="active-page" href="' . INCLUDE_PATH . 'noticias' . $categoriaStr . '?pagina=' . $i . '">' . $i . '</a>';
+                            echo '<a class="active-page" href="' . INCLUDE_PATH . 'noticias?pagina=' . $categoriaStr . $i . '">' . $i . '</a>';
                         } else {
-                            echo '<a href="' . INCLUDE_PATH . 'noticias' . $categoriaStr . '?pagina=' . $i . '">' . $i . '</a>';
+                            echo '<a href="' . INCLUDE_PATH . 'noticias?pagina=' . $categoriaStr . $i . '">' . $i . '</a>';
                             }
                         }
                     }
+                ?>
             </div>
             <!--paginator-->
         </div>
