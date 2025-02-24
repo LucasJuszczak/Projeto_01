@@ -37,9 +37,9 @@ $infoSite = $infoSite->fetch();
     <title><?php echo $infoSite['titulo']; ?></title>
 
     <!--favicon-->
-    <link rel="shortcut icon" href="<?php echo INCLUDE_PATH; ?>favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo INCLUDE_PATH; ?>arqweb_logo.png" type="image/x-icon">
 
-    <title>IFPR</title>
+    <title>ArqWeb: Design e Inovação</title>
 </head>
 
 <body>
