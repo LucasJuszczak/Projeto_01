@@ -148,6 +148,7 @@ section.banner-principal form h2 {
     /*Tamanho da fonte*/
     text-align: center;
     /*Alinhar no centro*/
+    text-shadow: 5px 5px 10px black;
 }
 
 section.banner-principal form input[type=email] {
